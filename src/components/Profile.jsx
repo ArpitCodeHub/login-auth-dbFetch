@@ -27,7 +27,10 @@ const Profile = () => {
     const handleLogout = async() => {
     try {
         await auth.signOut();
+        sessionStorage.clear();
         window.location.href = "/login";
+        // replacing "userDetails" value to null in browser history to prevent navigating back
+        window.history.replaceState(null, null, "/login");
         console.log("Logged out");
     } catch (error) {
         console.log("error : ",error);
